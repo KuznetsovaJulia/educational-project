@@ -5,10 +5,8 @@ Rails.application.routes.draw do
   authenticated do
     root :to => 'dashboard#index'
   end
-  get '/home' => 'static_pages#home', as: 'helf'
   get '/help'=> 'static_pages#help', as: :help
   get '/about' => 'static_pages#about', as: :about
-
   devise_for :users,
              :path_names => {
                      :sign_in => 'login',

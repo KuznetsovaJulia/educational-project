@@ -1,2 +1,9 @@
-<h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+
+<h3>Обратная связь</h3>
+
+<p>Email для связи <%= email_field(:user, :address) %></p>
+
+<p>Ваше сообщение <%= text_area_tag( :size => "48x22") %></p>
+<%= submit_tag("Отправить") %>
+
+<%= link_to "Back", :back %>
