@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'course/new'
+
+  get 'course/show'
+
+  get 'course/index'
+
+  get 'course/edit'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   unauthenticated do
     root :to => 'static_pages#home'
