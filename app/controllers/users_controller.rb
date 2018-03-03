@@ -1,5 +1,5 @@
-class UserController < ApplicationController
-    before_filter :authenticate_user!
+class UsersController < ApplicationController
+    before_action :authenticate_user!
     def create
         if method_to_check_captcha
             super
