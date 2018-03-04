@@ -2,3 +2,5 @@
 <li> <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %> </li>
 <li> <%= link_to 'Настройки', user_registration_path, :method => :put %> </li>
 <li><%= link_to 'Помощь', help_path %></li>
+
+<%= render template:  "categories/index" %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :courses
+    resources :courses
+    resources :categories
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   unauthenticated do
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
                      :unlock => 'unblock',
                      :registration => 'register',
                      :sign_up => 'cmon_let_me_in' }
+
 end
