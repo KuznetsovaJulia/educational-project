@@ -17,6 +17,8 @@ gem 'devise'
 gem 'typescript-rails'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rails_admin', '~> 1.3'
+gem 'webpacker'
+gem 'react-rails'
 group :development do
   gem 'web-console',           '3.5.1'
   gem 'listen',                '3.1.5'
