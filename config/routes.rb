@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-    resources :courses
-    resources :categories
+  get  '/categories/:category_id/courses'=> 'categories#show', as: 'category_show'
+  resources :courses
+  resources :categories
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   unauthenticated do
