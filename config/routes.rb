@@ -19,7 +19,7 @@ Rails.application.routes.draw do
                      :password => 'secret',
                      :confirmation => 'verification',
                      :unlock => 'unblock',
-                     :registration => 'register',
+                     :registration => 'register',only: [:new, :create, :edit, :update],
                      :sign_up => 'cmon_let_me_in' }
 
 end

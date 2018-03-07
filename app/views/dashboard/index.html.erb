@@ -4,3 +4,11 @@
 <li><%= link_to 'Помощь', help_path %></li>
 
 <%= render template:  "categories/index" %>
+
+<h1>Созданные курсы</h1>
+<% @made_courses.each do |course| %>
+  <li>
+    <%= link_to course.name, course%>
+  </li>
+<% end %>
+<%= render template:  "subscription/show" %>
