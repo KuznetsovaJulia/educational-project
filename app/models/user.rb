@@ -5,11 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,:confirmable
   has_many :subscription, dependent: :destroy
   has_many :courses, through: :subscription
-  def made_courses
-    Course.where("author_id = ?", id)
+  def  courses
+    Course.where(author_id: id)
   end
-  def my_subscriptions
-    Subscription.where("user_id = ?", id)
+  def  subscriptions
+    Subscription.where(user_id: id)
   end
-
 end

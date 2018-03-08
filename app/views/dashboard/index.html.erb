@@ -2,13 +2,14 @@
 <li> <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %> </li>
 <li> <%= link_to 'Настройки', user_registration_path, :method => :put %> </li>
 <li><%= link_to 'Помощь', help_path %></li>
-
-<%= render template:  "categories/index" %>
-
-<h1>Созданные курсы</h1>
-<% @made_courses.each do |course| %>
+<li><%= link_to 'Профиль', '#' %></li>
+<h1>Categories</h1>
+<% @categories.each do |category| %>
   <li>
-    <%= link_to course.name, course%>
+    <%= link_to category.name, courses_path(category)%>
   </li>
 <% end %>
+<h1>Созданные курсы</h1>
+<%= render template:  "courses/index" %>
+
 <%= render template:  "subscription/show" %>

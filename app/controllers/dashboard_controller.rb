@@ -1,10 +1,7 @@
 class DashboardController < ApplicationController
-  def show
-  end
   def index
-      @course  = current_user.courses.build
-      @made_courses = current_user.made_courses
-      @my_subscriptions = current_user.my_subscriptions
-
+      @courses = current_user.courses
+      @categories = Category.all
+      @subscriptions = current_user.subscriptions
   end
 end

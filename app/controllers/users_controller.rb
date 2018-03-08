@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
 
     def create
-        if method_to_check_captcha
+        if captcha_confirmed?
             super
         else
             build_resource

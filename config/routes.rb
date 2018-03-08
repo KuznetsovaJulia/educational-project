@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get  '/categories/:category_id/courses'=> 'categories#show', as: 'category_show'
+  get  '/categories/:category_id/courses'=> 'courses#index', as: 'courses'
   resources :courses
   resources :categories
 
