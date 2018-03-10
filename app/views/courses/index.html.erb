@@ -1,5 +1,9 @@
 <% @courses.each do |course| %>
-  <li>
-    <%= link_to course.name, course%>
-  </li>
+    <% if current_user==course.author %>
+    <li> <%= link_to course.name, course%> |
+      <%= link_to 'Удалить', course_path(course), method: :delete %></li>
+    <% else %>
+    <li>  <%= link_to course.name, course%></li>
+    <% end %>
 <% end %>
+

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get  '/categories/:category_id/courses'=> 'courses#index', as: 'courses'
+  resources :categories, only: [:index] do
+      resources :courses, only: [:index]
+  end
   resources :courses
   resources :categories
 
@@ -21,5 +23,5 @@ Rails.application.routes.draw do
                      :unlock => 'unblock',
                      :registration => 'register',only: [:new, :create, :edit, :update],
                      :sign_up => 'cmon_let_me_in' }
-
+  get '/users/:id/profile' => 'users#show', as: :user_profile
 end

@@ -13,4 +13,14 @@ class CoursesController < ApplicationController
   end
   def edit
   end
+  def destroy
+      @course = Course.find(params[:id])
+      if @course.subscriptions.count>5
+          redirect_to(root_path, :notice => 'Курс не был удален. Подписок более пяти.')
+      else
+          @id= @course.id
+          @course.destroy
+          redirect_to(root_path, :notice => "Курс ''#{Course.with_deleted.find(@id).name}'' был успешно удален.")
+      end
+  end
 end

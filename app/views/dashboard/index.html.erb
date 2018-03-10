@@ -1,12 +1,13 @@
+<p id="notice"><%= notice %></p>
 <h1>Dashboard</h1>
 <li> <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %> </li>
-<li> <%= link_to 'Настройки', user_registration_path, :method => :put %> </li>
+<li> <%= link_to 'Настройки', edit_user_registration_path, :method => :get %> </li>
 <li><%= link_to 'Помощь', help_path %></li>
-<li><%= link_to 'Профиль', '#' %></li>
+<li><%= link_to 'Профиль', user_profile_path(current_user) %></li>
 <h1>Categories</h1>
 <% @categories.each do |category| %>
   <li>
-    <%= link_to category.name, courses_path(category)%>
+    <%= link_to category.name, category_courses_path(category)%>
   </li>
 <% end %>
 <h1>Созданные курсы</h1>

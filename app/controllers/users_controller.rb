@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
-
+    def show
+        @courses=current_user.courses
+    end
     def create
         if captcha_confirmed?
             super
