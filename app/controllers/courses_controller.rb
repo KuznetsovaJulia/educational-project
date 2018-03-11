@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   def new
+      @course = Course.new
   end
   def index
       @categorization = Categorization.where(category_id: params[:category_id])
@@ -13,14 +14,35 @@ class CoursesController < ApplicationController
   end
   def edit
   end
+  def create
+      @course = Course.new(course_params)
+      @course.author_id = current_user.id
+      if @course.save
+          create_categorizations
+          redirect_to root_path
+      else
+          render :new
+      end
+  end
   def destroy
       @course = Course.find(params[:id])
-      if @course.subscriptions.count>5
+      if @course.might_be_deleted?
           redirect_to(root_path, :notice => 'Курс не был удален. Подписок более пяти.')
       else
           @id= @course.id
           @course.destroy
           redirect_to(root_path, :notice => "Курс ''#{Course.with_deleted.find(@id).name}'' был успешно удален.")
+      end
+  end
+
+  private
+  def course_params
+      params.require(:course).permit(:name)
+  end
+  def create_categorizations
+      params[:category_ids].map do |id|
+          @categorization = Categorization.new(course_id: @course.id,category_id:id)
+          @categorization.save
       end
   end
 end

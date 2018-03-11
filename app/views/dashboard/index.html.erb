@@ -4,6 +4,7 @@
 <li> <%= link_to 'Настройки', edit_user_registration_path, :method => :get %> </li>
 <li><%= link_to 'Помощь', help_path %></li>
 <li><%= link_to 'Профиль', user_profile_path(current_user) %></li>
+<%= link_to "Создать курс", new_course_path , :method => :get%>
 <h1>Categories</h1>
 <% @categories.each do |category| %>
   <li>
