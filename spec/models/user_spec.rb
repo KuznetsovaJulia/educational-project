@@ -5,7 +5,7 @@ RSpec.describe User do
         @user.update(confirmed_at: Time.now)
     end
     it 'should be valid' do
-        expect(@user).to respond_to(:email)
+        expect(@user).to be_valid
     end
     it {should have_many :courses}
     it {should have_many :subscription}

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :categories, only: [:index] do
       resources :courses, only: [:index]
   end
-  resources :courses
+  resources :courses do
+      resource :like, module: :courses
+  end
   resources :categories
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

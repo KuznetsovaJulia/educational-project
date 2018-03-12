@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,:confirmable
   has_many :subscription, dependent: :destroy
   has_many :courses, through: :subscription
+  has_many :likes
+  def likes?(course)
+    course.likes.where(user_id:id).any?
+  end
   def  courses
     Course.where(author_id: id)
   end

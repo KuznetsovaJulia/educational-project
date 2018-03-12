@@ -1,0 +1,6 @@
+<% if user_signed_in? && current_user.likes?(@course) %>
+  <%=link_to "UnLike", course_like_path(@course),method: :delete, remote: true%>
+<% else %>
+  <%=link_to "Like", course_like_path(@course),method: :post, remote: true%>
+<% end %>
+<%= @course.likes.count %>
