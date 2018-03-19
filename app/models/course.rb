@@ -7,7 +7,6 @@ class Course < ApplicationRecord
     has_many :categories, through: :categorization, dependent: :destroy
     validates :name, presence: true, length: { minimum: 3 }
     has_many :likes
-
     def might_be_deleted?
         subscriptions.count>5
     end

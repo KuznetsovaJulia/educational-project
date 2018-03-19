@@ -1,2 +1,14 @@
 <h1><%= current_user.email %></h1>
 <%= render template:  "courses/index" %>
+
+<% if current_user.likes==[] %>
+  <% else %>
+  <h2>Закладки</h2>
+<% current_user.likes.each do |like| %>
+  <% @course=Course.find(like.course_id) %>
+    <li> <%= link_to @course.name, @course%> |
+       <%=link_to "Удалить закладку", course_like_path(@course),method: :delete, remote: true%>
+<% end %>
+<% end %>
+
+

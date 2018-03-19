@@ -7,8 +7,7 @@ class Courses::LikesController < ApplicationController
     end
     def destroy
         @course.likes.where(user_id: current_user.id).destroy_all
-        redirect_to @course
-
+        redirect_back(fallback_location: root_path)
     end
     private
     def set_courses

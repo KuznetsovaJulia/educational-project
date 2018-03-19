@@ -26,4 +26,6 @@ Rails.application.routes.draw do
                      :registration => 'register',only: [:new, :create, :edit, :update]
              }
   get '/users/:id/profile' => 'users#show', as: :user_profile
+  get '/courses/:id/like_count' => 'courses#like_count', as: :like_count
+
 end

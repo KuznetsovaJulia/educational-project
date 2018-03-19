@@ -34,12 +34,16 @@ class CoursesController < ApplicationController
           redirect_to(root_path, :notice => "Курс ''#{Course.with_deleted.find(@id).name}'' был успешно удален.")
       end
   end
-
+  def like_count
+      @course = Course.find(params[:id])
+      render json: @course.likes.count
+  end
   private
   def course_params
       params.require(:course).permit(:name)
   end
   def create_categorizations
+
       params[:category_ids].map do |id|
           @categorization = Categorization.new(course_id: @course.id,category_id:id)
           @categorization.save
