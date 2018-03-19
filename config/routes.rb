@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :categories, only: [:index] do
+      resources :courses, only: [:index]
+  end
+  resources :courses do
+      resource :like, module: :courses
+  end
+  resources :categories
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   unauthenticated do
     root :to => 'static_pages#home'
@@ -15,6 +23,9 @@ Rails.application.routes.draw do
                      :password => 'secret',
                      :confirmation => 'verification',
                      :unlock => 'unblock',
-                     :registration => 'register',
-                     :sign_up => 'cmon_let_me_in' }
+                     :registration => 'register',only: [:new, :create, :edit, :update]
+             }
+  get '/users/:id/profile' => 'users#show', as: :user_profile
+  get '/courses/:id/like_count' => 'courses#like_count', as: :like_count
+
 end

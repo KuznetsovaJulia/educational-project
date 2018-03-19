@@ -1,7 +1,10 @@
-class UserController < ApplicationController
-    before_filter :authenticate_user!
+class UsersController < ApplicationController
+    before_action :authenticate_user!
+    def show
+        @courses=current_user.courses
+    end
     def create
-        if method_to_check_captcha
+        if captcha_confirmed?
             super
         else
             build_resource
