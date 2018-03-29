@@ -10,4 +10,5 @@ class Course < ApplicationRecord
     def might_be_deleted?
         subscriptions.count>5
     end
+
 end

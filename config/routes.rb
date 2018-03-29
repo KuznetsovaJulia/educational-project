@@ -3,7 +3,7 @@ Rails.application.routes.draw do
       resources :courses, only: [:index]
   end
   resources :courses do
-      resource :like, module: :courses
+      resource :like, module: :courses, only: [:show]
   end
   resources :categories
 
@@ -27,5 +27,5 @@ Rails.application.routes.draw do
              }
   get '/users/:id/profile' => 'users#show', as: :user_profile
   get '/courses/:id/like_count' => 'courses#like_count', as: :like_count
-
+  post '/create_course' => 'courses#create'
 end

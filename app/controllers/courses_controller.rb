@@ -15,14 +15,7 @@ class CoursesController < ApplicationController
   def edit
   end
   def create
-      @course = Course.new(course_params)
-      @course.author_id = current_user.id
-      if @course.save
-          create_categorizations
-          redirect_to root_path
-      else
-          render :new
-      end
+       @course = current_user.create_course(params[:name])
   end
   def destroy
       @course = Course.find(params[:id])
@@ -38,15 +31,11 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
       render json: @course.likes.count
   end
+
+
   private
   def course_params
       params.require(:course).permit(:name)
   end
-  def create_categorizations
 
-      params[:category_ids].map do |id|
-          @categorization = Categorization.new(course_id: @course.id,category_id:id)
-          @categorization.save
-      end
-  end
 end

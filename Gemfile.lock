@@ -337,7 +337,7 @@ DEPENDENCIES
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
   jbuilder (= 2.7.0)
-  jquery-rails (= 4.3.1)
+  jquery-rails
   kaminari
   launchy
   listen (= 3.1.5)
