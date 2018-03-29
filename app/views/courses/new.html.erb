@@ -13,8 +13,15 @@
     <%= p.label "Название" %>
     <%= p.text_field :name %>
   </p>
-
   <div>
-    <button class='create_course'>Создать курс</button>
+  <% Category.all.each do |category| %>
+    <li data-category_name="<%=category.name%>">
+      <%= check_box("category_ids", category.id ) %>
+      <%=  category.name -%>
+    </li>
+  <% end %>
+  </div>
+  <div>
+    <button class='createCourse'>Создать курс</button>
   </div>
 <% end %>
