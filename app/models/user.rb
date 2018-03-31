@@ -19,6 +19,6 @@ class User < ApplicationRecord
   end
 
   def create_course(name)
-    Course.new(name: name, author_id: id)
+    Course.create(name: name, author_id: id)
   end
 end

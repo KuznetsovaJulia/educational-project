@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = current_user.create_course(params[:name])
-    render json: { success: true }
+    create_categorizations if @course.save
   end
 
   def destroy
@@ -42,5 +42,13 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:name)
+  end
+
+  def create_categorizations
+    @category_names = params[:category_names]
+    @category_names.split.map do |name|
+      @category = Category.find_by(name: name)
+      Categorization.create(course_id: @course.id, category_id: @category.id) unless @category.nil?
+    end
   end
 end

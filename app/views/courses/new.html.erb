@@ -1,27 +1,16 @@
-<% if @course.errors.any? %>
-  <p>Your submission has <%= pluralize(@course.errors.count, 'error') %>
-  <ul>
-    <% @course.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <h1>Создать курс</h1>
-<%= form_for @course  do |p| %>
+<%= form_for @course do |p| %>
   <p>
     <%= p.label "Название" %>
     <%= p.text_field :name %>
   </p>
   <div>
-  <% Category.all.each do |category| %>
-    <li data-category_name="<%=category.name%>">
-      <%= check_box("category_ids", category.id ) %>
-      <%=  category.name -%>
-    </li>
-  <% end %>
-  </div>
-  <div>
-    <button class='createCourse'>Создать курс</button>
+    <% Category.all.each do |category| %>
+      <li>
+        <%= check_box("category", category.id, {}, category.name) %>
+        <%=  category.name -%>
+      </li>
+    <% end %>
+    <button class="create_course">Create</button>
   </div>
 <% end %>
