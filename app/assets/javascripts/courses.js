@@ -2,14 +2,16 @@ $(function () {
     const $createCourseButton = $(".create_course");
     $($createCourseButton).click(function () {
         let name,category_names, count = $(":checkbox:checked").length;
-        if (count>=2){
+        if (count >= 2) {
             name = $("#course_name").val();
-            category_names =$("input:checked").valList();
+            const emptyValues = [null, undefined, ''];
+
+            category_names = $("input:checked").valList().filter(el => !emptyValues.includes(el));
 
             $.ajax({
                 url: '/create_course',
                 dataType: 'json',
-                data: JSON.stringify({ name: name,category_names:category_names }),
+                data: JSON.stringify({ name: name, category_names: category_names }),
                 type: 'POST',
                 contentType: 'application/json',
                 success: function() { }
@@ -20,9 +22,9 @@ $(function () {
 
     $(function(){
         $.fn.valList = function(){
-            return $.map( this, function (elem) {
+            return $.map(this, function (elem) {
                 return elem.value || "";
-            }).join( " " );
+            });
         };
     });
 

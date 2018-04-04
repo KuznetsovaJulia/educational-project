@@ -14,7 +14,7 @@ class User < ApplicationRecord
     Course.where(author_id: id)
   end
 
-  def  subscriptions
+  def subscriptions
     Subscription.where(user_id: id)
   end
 

@@ -23,7 +23,12 @@ class CoursesController < ApplicationController
 
   def create
     @course = current_user.create_course(params[:name])
-    create_categorizations if @course.save
+
+    if @course.save
+      create_categorizations
+      redirect_to course_path(@course.id)
+    end
+    redirect_to "/courses/#{@course.id}"
   end
 
   def destroy
@@ -42,10 +47,6 @@ class CoursesController < ApplicationController
     render json: @course.likes.count
   end
 
-  def course_category_name
-
-  end
-
   private
 
   def course_params
@@ -53,10 +54,12 @@ class CoursesController < ApplicationController
   end
 
   def create_categorizations
-    @category_names = params[:category_names]
-    @category_names.split.map do |id|
+    @category_ids = params[:category_names]
+    @category_ids = @category_ids.split.delete_if {|el| el == '' || el == 'on'}
+    @category_ids.each do |id|
+      puts "#{id} METHOD CC"
       @category = Category.find(id)
-      Categorization.create(course_id: @course.id, category_id: @category.id) unless @category.nil?
+      Categorization.create(course_id: @course.id, category_id: @category.id)
     end
   end
 end
