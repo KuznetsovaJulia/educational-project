@@ -27,3 +27,28 @@ $(function () {
     });
 
 });
+
+const coursesApp = {}
+
+coursesApp.main = {
+    handleSearchButtonsClick(){
+      const $searchByCategoryButton = $('.courses__search_by_category')
+      const $searchByName = $('.courses__search_by_name')
+      const $searchByCategoryBody = $('.courses__category_search--input')
+      const $searchByNameBody = $('.courses__name_search--input')
+      $searchByCategoryButton.click((e) => {
+          e.preventDefault();
+          $($searchByName).show()
+          $($searchByCategoryBody).show()
+          $($searchByNameBody).hide()
+          $($searchByCategoryButton).hide()
+
+      })
+    }
+};
+
+coursesApp.init = function () {
+    coursesApp.main.handleSearchButtonsClick()
+}
+
+coursesApp.init();

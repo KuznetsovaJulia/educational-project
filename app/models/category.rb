@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
-  has_many :categorization
-  has_many :courses, through: :categorization
+  has_many :categorizations
+  has_many :courses, through: :categorizations
 end

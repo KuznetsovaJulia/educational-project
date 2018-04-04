@@ -1,0 +1,6 @@
+<%= simple_form_for(@course, :remote => true) do |p| %>
+  <%= p.error_notification %>
+  <%= p.input :name %>
+  <%= p.association  :categories ,as: :check_boxes%>
+  <%= p.button :submit, class:'create_course' %>
+<% end %>

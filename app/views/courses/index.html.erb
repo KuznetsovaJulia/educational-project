@@ -1,9 +1,19 @@
-<% @courses.each do |course| %>
-    <% if current_user==course.author %>
-    <li> <%= link_to course.name, course%> |
-      <%= link_to 'Удалить', course_path(course), method: :delete %></li>
-    <% else %>
-    <li>  <%= link_to course.name, course%></li>
-    <% end %>
-<% end %>
+<%= form_with url: :courses  do |f| %>
+  <%= f.label :name,"Name"%>
+  <div class="courses__name_search--input">
+    <%= f.text_field :name%>
 
+    <%= f.submit "Search by name" %>
+    <button class="courses__search_by_category">Search by category</button>
+  </div>
+
+  <div class="courses__category_search--input" style="display: none">
+    <%= f.text_field :category %>
+
+    <%= f.submit "Search by category" %>
+    <button class="courses__search_by_name">Search by name</button>
+  </div>
+
+
+<% end %>
+<%= render partial: 'courses/courses', locals: {courses: @courses} %>

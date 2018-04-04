@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :categories, only: [:index] do
-    resources :courses, only: [:index]
+  resources :categories do
+    resources :courses, only: [:index], module: :categories
   end
   resources :courses do
     resource :like, module: :courses, only: [:show]

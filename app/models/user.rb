@@ -21,4 +21,5 @@ class User < ApplicationRecord
   def create_course(name)
     Course.create(name: name, author_id: id)
   end
+
 end

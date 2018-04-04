@@ -1,0 +1,16 @@
+.dashboard__wrapper{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .dashboard__left_block{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+.dashboard__settings__subscriptions {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,16 +1,2 @@
-<h1>Создать курс</h1>
-<%= form_for @course do |p| %>
-  <p>
-    <%= p.label "Название" %>
-    <%= p.text_field :name %>
-  </p>
-  <div>
-    <% Category.all.each do |category| %>
-      <li>
-        <%= check_box("category", category.id, {}, category.name) %>
-        <%=  category.name -%>
-      </li>
-    <% end %>
-    <button class="create_course">Create</button>
-  </div>
-<% end %>
+ <h2>Создать курс</h2>
+ <%= render "form" %>

@@ -4,10 +4,14 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @categorization = Categorization.where(category_id: params[:category_id])
-    @courses = @categorization.map do |categorization|
-      Course.find(categorization.course_id)
+    search_method = params['Commit']
+    input_value   = params[:q]
+    case search_method
+      when 'Search by category'
+            @courses = Course.find_by_category_name(params[:q])
     end
+    #@search = Course.search(params[:q])
+    @courses = Course.all
   end
 
   def show
@@ -38,6 +42,10 @@ class CoursesController < ApplicationController
     render json: @course.likes.count
   end
 
+  def course_category_name
+
+  end
+
   private
 
   def course_params
@@ -46,8 +54,8 @@ class CoursesController < ApplicationController
 
   def create_categorizations
     @category_names = params[:category_names]
-    @category_names.split.map do |name|
-      @category = Category.find_by(name: name)
+    @category_names.split.map do |id|
+      @category = Category.find(id)
       Categorization.create(course_id: @course.id, category_id: @category.id) unless @category.nil?
     end
   end

@@ -1,17 +1,34 @@
-<p id="notice"><%= notice %></p>
-<h1>Dashboard</h1>
-<li> <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %> </li>
-<li> <%= link_to 'Настройки', edit_user_registration_path, :method => :get %> </li>
-<li><%= link_to 'Помощь', help_path %></li>
-<li><%= link_to 'Профиль', user_profile_path(current_user) %></li>
-<%= link_to "Создать курс", new_course_path ,:method => :get%>
-<h1>Categories</h1>
-<% @categories.each do |category| %>
-  <li>
-    <%= link_to category.name, category_courses_path(category)%>
-  </li>
-<% end %>
-<h1>Созданные курсы</h1>
-<%= render template:  "courses/index" %>
+<div class="dashboard__wrapper">
 
-<%= render template:  "subscription/show" %>
+
+
+<div class="dashboard__left_block">
+  <p id="notice"><%= notice %></p>
+  <li> <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %> </li>
+  <li> <%= link_to 'Настройки', edit_user_registration_path, :method => :get %> </li>
+  <li><%= link_to 'Помощь', help_path %></li>
+  <li><%= link_to 'Профиль', user_profile_path(current_user) %></li>
+
+  <div class="dashboard__settings__subscriptions">
+
+    <%= render template:  "subscription/show" %>
+  </div>
+</div>
+
+  <div class="dashboard__right_block">
+    <%= link_to "Создать курс", new_course_path ,:method => :get%>
+    <h1>Categories</h1>
+    <% @categories.each do |category| %>
+      <li>
+        <%= link_to category.name, category_courses_path(category)%>
+      </li>
+    <% end %>
+    <h1>Созданные курсы</h1>
+    <%= render template:  "courses/index" %>
+
+  </div>
+
+
+</div>
+
+
