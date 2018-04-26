@@ -18,6 +18,8 @@ class Course < ApplicationRecord
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations, dependent: :destroy
   has_many :likes
+  has_many :sections, dependent: :destroy
+  has_many :lessons, through: :sections
   validates :description, presence: true, length: { minimum: 3 }
 
   validates :name, presence: true, length: { minimum: 3 }
