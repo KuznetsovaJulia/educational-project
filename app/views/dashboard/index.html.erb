@@ -1,34 +1,49 @@
 <div class="dashboard__wrapper">
 
 
+  <div class="dashboard__left_block">
+    <p id="notice"><%= notice %></p>
+    <li><%= link_to 'Профиль', user_profile_path(current_user) %></li>
+    <li><%= link_to 'Помощь', help_path %></li>
+    <li> <%= link_to 'Настройки', edit_user_registration_path, :method => :get %> </li>
+    <li> <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %> </li>
 
-<div class="dashboard__left_block">
-  <p id="notice"><%= notice %></p>
-  <li> <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %> </li>
-  <li> <%= link_to 'Настройки', edit_user_registration_path, :method => :get %> </li>
-  <li><%= link_to 'Помощь', help_path %></li>
-  <li><%= link_to 'Профиль', user_profile_path(current_user) %></li>
-
-  <div class="dashboard__settings__subscriptions">
-
-    <%= render template:  "subscription/show" %>
   </div>
-</div>
-
   <div class="dashboard__right_block">
     <%= link_to "Создать курс", new_course_path ,:method => :get%>
-    <h1>Categories</h1>
-    <% @categories.each do |category| %>
-      <li>
-        <%= link_to category.name, category_courses_path(category)%>
-      </li>
-    <% end %>
-    <h1>Созданные курсы</h1>
-    <%= render template:  "courses/index" %>
+
+    <div class="tabbed">
+      <input type="radio" name="tabs" id="tab-nav-1" checked>
+      <label for="tab-nav-1">Подписки</label>
+      <input type="radio" name="tabs" id="tab-nav-2">
+      <label for="tab-nav-2">Категории</label>
+      <input type="radio" name="tabs" id="tab-nav-3">
+      <label for="tab-nav-3">Мои курсы</label>
+      <input type="radio" name="tabs" id="tab-nav-4">
+      <label for="tab-nav-4">Закладки</label>
+      <div class="tabs">
+        <div><h2>Подписки</h2>    <%= render template:  "subscriptions/show" %>
+        </div>
+        <div><h2>Категории</h2>
+          <% @categories.each do |category| %>
+            <li>
+              <%= link_to category.name, category_courses_path(category), id:category_courses_path(category)%>
+            </li>
+          <% end %>
+        </div>
+        <div><h2>Мои курсы</h2>    <%= render template:  "courses/index" %>
+        </div>
+        <div><h2>Закладки</h2><% if current_user.likes==[] %>
+          <% else %>
+            <% current_user.likes.each do |like| %>
+              <% @course=Course.find(like.course_id) %>
+              <li> <%= link_to @course.name, @course%> |
+                <%=link_to "Удалить закладку", course_like_path(@course),method: :delete, remote: true%>
+            <% end %>
+          <% end %></div>
+      </div>
+    </div>
 
   </div>
 
-
 </div>
-
-

@@ -1,36 +1,34 @@
-$(function () {
-    const $createCourseButton = $(".create_course");
-    $($createCourseButton).click(function () {
-        let name,category_names, count = $(":checkbox:checked").length;
-        if (count >= 2) {
-            name = $("#course_name").val();
-            const emptyValues = [null, undefined, ''];
+ $(function () {
+        const $createCourseButton = $(".create_course");
+        $($createCourseButton).click(function () {
+            let name,category_ids, count = $(":checkbox:checked").length;
+            if (count>=2){
+                name = $("#course_name").val();
+                category_ids =$("input:checked").valList();
 
-            category_names = $("input:checked").valList().filter(el => !emptyValues.includes(el));
-
-            $.ajax({
-                url: '/create_course',
-                dataType: 'json',
-                data: JSON.stringify({ name: name, category_names: category_names }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function() { }
-            });
-        }
-        else alert("Выберите хотя бы одну категорию");
+                $.ajax({
+                    url: '/create_course',
+                    dataType: 'json',
+                    data: JSON.stringify({ name: name,category_ids:category_ids }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function() { }
+                });
+            }
+            else alert("Выберите хотя бы одну категорию"); return false;
+        });
     });
 
     $(function(){
         $.fn.valList = function(){
-            return $.map(this, function (elem) {
+            return $.map( this, function (elem) {
                 return elem.value || "";
-            });
+            }).join( " " );
         };
     });
 
-});
 
-const coursesApp = {}
+const coursesApp = {};
 
 coursesApp.main = {
     handleSearchButtonsClick(){
@@ -38,12 +36,10 @@ coursesApp.main = {
       const $searchByName = $('.courses__search_by_name')
       const $searchByCategoryBody = $('.courses__category_search--input')
       const $searchByNameBody = $('.courses__name_search--input')
-      $searchByCategoryButton.click((e) => {
-          e.preventDefault();
+      $searchByCategoryButton.click(() => {
           $($searchByName).show()
           $($searchByCategoryBody).show()
-          $($searchByNameBody).hide()
-          $($searchByCategoryButton).hide()
+          S($searchByNameBody).hide()
 
       })
     }

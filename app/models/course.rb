@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  author_id  :integer
+#  deleted_at :datetime
+#
+
 class Course < ApplicationRecord
   acts_as_paranoid
   has_many :subscriptions, dependent: :destroy
@@ -6,20 +18,21 @@ class Course < ApplicationRecord
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations, dependent: :destroy
   has_many :likes
+  validates :description, presence: true, length: { minimum: 3 }
 
   validates :name, presence: true, length: { minimum: 3 }
 
   class << self
     def find_by_category_name(category_name)
       joins(:categorizations)
-              .ransack(categorization_name_cont: category_name)
-              .result
+        .ransack(categorization_name_cont: category_name)
+        .result
     end
 
     def find_by_category_id(category_id)
       joins(:categorizations)
-              .ransack(categorizations_category_id_eq: category_id)
-              .result
+        .ransack(categorizations_category_id_eq: category_id)
+        .result
     end
   end
 
@@ -30,6 +43,4 @@ class Course < ApplicationRecord
   def category_names
     categories.map(&:name)
   end
-
-
 end

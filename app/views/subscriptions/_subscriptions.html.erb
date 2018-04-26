@@ -1,0 +1,8 @@
+<% subscriptions.each do |subscription| %>
+  <%= subscription.name %>
+
+  <% subscription.category_names.each do |name| %>
+
+    <%= name %>
+  <% end %>
+<% end %>
