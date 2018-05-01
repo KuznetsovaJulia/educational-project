@@ -1,6 +1,6 @@
-<h1>Мои подписки</h1>
 <% @subscriptions.map do |subscription| %>
   <li>
     <%= link_to subscription.course.name, subscription.course%>
   </li>
+
 <% end %>

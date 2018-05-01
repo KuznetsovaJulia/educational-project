@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312073136) do
+ActiveRecord::Schema.define(version: 20180426081319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blocks", force: :cascade do |t|
+    t.string "name"
+    t.text "theory"
+    t.bigint "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_blocks_on_lesson_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -36,8 +45,18 @@ ActiveRecord::Schema.define(version: 20180312073136) do
     t.datetime "updated_at", null: false
     t.integer "author_id"
     t.datetime "deleted_at"
+    t.text "description"
     t.index ["author_id"], name: "index_courses_on_author_id"
     t.index ["deleted_at"], name: "index_courses_on_deleted_at"
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_lessons_on_section_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -45,6 +64,21 @@ ActiveRecord::Schema.define(version: 20180312073136) do
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "practices", force: :cascade do |t|
+    t.bigint "block_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_practices_on_block_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_sections_on_course_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -73,11 +107,16 @@ ActiveRecord::Schema.define(version: 20180312073136) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "blocks", "lessons"
   add_foreign_key "categorizations", "categories"
   add_foreign_key "categorizations", "courses"
+  add_foreign_key "lessons", "sections"
+  add_foreign_key "practices", "blocks"
+  add_foreign_key "sections", "courses"
 end
