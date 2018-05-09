@@ -1,0 +1,19 @@
+<table id="sections">
+  <tr>
+    <th> ID</th>
+    <th>Название </th>
+    <th>Количество уроков</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @sections.each do |i|  %>
+    <tr id="<%= i.id %>">
+      <td><%= i.id %></td>
+      <td><%= i.name %></td>
+      <td align="center"><%= i.lessons.size %></td>
+      <td><%= link_to "Добавить уроки",edit_section_path(i) %></td>
+      <td><button class="delete_section" value="<%= i.id %>" >Удалить</button> </td>
+    </tr>
+  <% end %>
+
+</table>

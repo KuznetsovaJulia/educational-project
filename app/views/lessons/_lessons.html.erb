@@ -1,0 +1,8 @@
+<div id="lessons">
+  <% @lessons.each do |lesson| %>
+    <li id="<%= lesson.id %>">  <%= lesson.name%>|
+      <button class="delete_lesson" id="<%= lesson.id %>" value="<%= lesson.id %>" >Удалить</button>
+      <br>
+  <% end %>
+  </li>
+</div>

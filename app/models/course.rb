@@ -20,6 +20,9 @@ class Course < ApplicationRecord
   has_many :likes
   has_many :sections, dependent: :destroy
   has_many :lessons, through: :sections
+  has_many :blocks, through: :lessons
+  has_many :practices, through: :blocks
+
   validates :description, presence: true, length: { minimum: 3 }
 
   validates :name, presence: true, length: { minimum: 3 }

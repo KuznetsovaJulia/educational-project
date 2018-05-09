@@ -7,10 +7,10 @@ class CoursesController < ApplicationController
     search_method = params['Commit']
     input_value   = params[:q]
     case search_method
-      when 'Search by category'
-            @courses = Course.find_by_category_name(params[:q])
+    when 'Search by category'
+      @courses = Course.find_by_category_name(params[:q])
     end
-    #@search = Course.search(params[:q])
+    # @search = Course.search(params[:q])
     @courses = Course.all
   end
 
@@ -19,13 +19,17 @@ class CoursesController < ApplicationController
     @author = User.find(@course.author_id)
   end
 
-  def edit; end
+  def edit
+    @course = Course.find(params[:id])
+    @sections = @course.sections
+    @section = Section.new
+  end
 
   def create
-    @course = current_user.create_course(params[:name])
+    @course = current_user.create_course(params[:name], params[:description])
     if @course.save
       create_categorizations
-      redirect_to @course
+      redirect_to edit_course_path(@course)
     end
   end
 
@@ -53,7 +57,7 @@ class CoursesController < ApplicationController
 
   def create_categorizations
     @category_ids = params[:category_ids]
-    @category_ids = @category_ids.split.delete_if {|el| el == '' || el == 'on'}
+    @category_ids = @category_ids.split.delete_if { |el| el == '' || el == 'on' }
     @category_ids.each do |id|
       puts "#{id} METHOD CC"
       @category = Category.find(id)

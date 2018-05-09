@@ -43,8 +43,8 @@ class User < ApplicationRecord
     Subscription.where(user_id: id)
   end
 
-  def create_course(name,description)
-    Course.create(name: name, author_id: id,description:description)
+  def create_course(name, description)
+    Course.create(name: name, author_id: id, description: description)
   end
 
   def subscribe(course)

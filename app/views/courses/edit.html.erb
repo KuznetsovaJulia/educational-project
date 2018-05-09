@@ -1,2 +1,14 @@
-<h1>Course#edit</h1>
-<p>Find me in app/views/course/edit.html.erb</p>
+<h2>Редактировать курс</h2>
+<%= simple_form_for(@course)  do |p| %>
+  <%= p.error_notification %>
+  <%= p.input :name %>
+  <%= p.input :description %>
+  <%= p.association  :categories ,as: :check_boxes%>
+  <%= p.button :submit, class:'update_course' %>
+<% end %>
+<h2>Добавить раздел</h2>
+<%= simple_form_for(@section)  do |p| %>
+  <%= p.input :name%>
+  <%= p.button :submit, class:'create_section',id: @course.id %>
+<% end %>
+<%= render partial:  "sections/sections" %>

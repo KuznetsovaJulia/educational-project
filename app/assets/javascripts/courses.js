@@ -1,15 +1,15 @@
  $(function () {
         const $createCourseButton = $(".create_course");
         $($createCourseButton).click(function () {
-            let name,category_ids, count = $(":checkbox:checked").length;
+            let name,category_ids, count = $(":checkbox:checked").length,description;
             if (count>=2){
                 name = $("#course_name").val();
                 category_ids =$("input:checked").valList();
-
+                description = $("#course_description").val();
                 $.ajax({
                     url: '/create_course',
                     dataType: 'json',
-                    data: JSON.stringify({ name: name,category_ids:category_ids }),
+                    data: JSON.stringify({ name: name,category_ids:category_ids,description:description }),
                     type: 'POST',
                     contentType: 'application/json',
                     success: function() { }
