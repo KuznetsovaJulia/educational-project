@@ -8,8 +8,9 @@ class LessonsController < ApplicationController
     end
 
     def edit
-        @lesson = Section.find(params[:id])
-
+        @lesson = Lesson.find(params[:id])
+        @blocks = @lesson.blocks
+        @block = Block.new
     end
 
     def destroy

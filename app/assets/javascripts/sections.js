@@ -1,9 +1,8 @@
 $(function() {
-
-    $(".delete_section").click(function () {
-        let $deleteSectionButton = $(".delete_section");
+    $(`.delete_section`).click(function (event) {
+        event.preventDefault();
+        let section_id = $(this).attr('id');
         if (confirm("Точно удалить?")){
-            let section_id = $deleteSectionButton.val();
             let current_section_tr = $(`tr#${section_id}`);
             $.ajax({
                 url:'/delete_section/'+section_id,
@@ -15,15 +14,11 @@ $(function() {
             });
         };
     });
-});
 
-$(function () {
-    const $createSectionButton = $(".create_section");
-    let name,course_id;
-    $($createSectionButton).click(function (event) {
+    $(".create_section").click(function (event) {
         event.preventDefault();
-        course_id=$(".create_section").attr('id');
-        name = $("#section_name").val();
+        let course_id=$(".create_section").attr('id');
+        let name = $("#section_name").val();
         $.ajax({
             url: '/create_section',
             dataType: 'json',
@@ -33,7 +28,6 @@ $(function () {
             success: function(result) {
                 $("#sections").html(result)
             }
+        });
     });
-
-});
 });

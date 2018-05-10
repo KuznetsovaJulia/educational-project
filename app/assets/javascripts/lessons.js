@@ -1,6 +1,6 @@
 $(function() {
-    let $deleteLessonButton = $(`.delete_lesson`);
-    $deleteLessonButton.click(function () {
+    $(`.delete_lesson`).click(function (event) {
+        event.preventDefault();
         let lesson_id = $(this).parent().attr('id');
         if (confirm("Точно удалить?")){
             let current_lesson_li = $(`li#${lesson_id}`);
@@ -14,11 +14,8 @@ $(function() {
             });
         };
     });
-});
 
-$(function () {
-    let $createLessonButton = $(".create_lesson");
-    $($createLessonButton).click(function (event) {
+    $(".create_lesson").click(function (event) {
         event.preventDefault();
         let section_id=$(".create_lesson").attr('id');
         let lesson_name = $("#lesson_name").val();
@@ -29,9 +26,10 @@ $(function () {
             type: 'POST',
             contentType: 'application/json',
             success: function(result) {
-                $("#lessons").html(result)
+                $(`div#lessons`).html(result)
             }
         });
 
     });
+
 });

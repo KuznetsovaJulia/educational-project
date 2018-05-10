@@ -1,0 +1,17 @@
+<h2>Редактировать урок</h2>
+<%= simple_form_for(@block)  do |p| %>
+  <%= p.error_notification %>
+  <%= p.input :theory %>
+  <%= p.button :submit, class:'update_block' %>
+<% end %>
+<h2>Добавить задачи</h2>
+
+<%= simple_form_for(@practice)  do |p| %>
+  <%= p.input :question %>
+  <%= p.label :answer_type %>
+  <%= p.select :answer_type, options_for_select(@answer_types.collect { |s| [s[0].humanize, s[0]] }, selected: @practice.answer_type), {}  %>
+  <%= p.button :submit, class:'create_practice' %>
+<% end %>
+
+<div id="practices">
+</div>

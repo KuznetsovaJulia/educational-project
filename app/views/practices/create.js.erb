@@ -1,0 +1,15 @@
+"   <% @practices.each do |practice|  %>
+<% case practice.answer_type %>
+<% when "multiple_choice" %>
+<%= render partial: 'multiple_choice' %>
+<% when "one_true" %>
+<%= render partial: 'one_true' %>
+<% when "sequence" %>
+<%= render partial: 'sequence' %>
+<% when "write_number" %>
+<%= render partial: 'write_number' %>
+<% when "write_text" %>
+<%= render partial: 'write_number' %>
+<% end %>
+<% end %>
+"

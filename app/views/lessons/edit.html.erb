@@ -1,0 +1,14 @@
+<h2>Редактировать урок</h2>
+<%= simple_form_for(@lesson)  do |p| %>
+  <%= p.error_notification %>
+  <%= p.input :name %>
+  <%= p.button :submit, class:'update_lesson' %>
+<% end %>
+<h2>Добавить блок</h2>
+<%= simple_form_for(@block)  do |p| %>
+  <%= p.input :theory%>
+  <%= p.button :submit,"Добавить", class:'create_block',id: @lesson.id %>
+<% end %>
+<div id="blocks">
+  <%= render partial:  "blocks/blocks" %>
+</div>

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'annotate'
 gem 'active_model_serializers'
 gem 'bcrypt', '3.1.11'
 gem 'carrierwave', '~> 1.0'
@@ -18,7 +18,6 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'sass-rails', '5.0.6'
 gem 'simple_form'
 gem 'turbolinks', '5.0.1'
-gem 'typescript-rails'
 gem 'uglifier', '3.2.0'
 group :development do
   gem 'better_errors'

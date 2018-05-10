@@ -1,0 +1,19 @@
+<table id="blocks">
+  <tr>
+    <th>ID</th>
+    <th>Теория</th>
+    <th>Количество задач</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @blocks.each do |i|  %>
+    <tr id="<%= i.id %>">
+      <td><%= i.id %></td>
+      <td><%= i.theory %></td>
+      <td align="center"><%=i.practices.size  %></td>
+      <td><%= link_to "Добавить задачи",edit_block_path(i) %></td>
+      <td><button class="delete_block" id="<%= i.id %>" >Удалить</button> </td>
+    </tr>
+  <% end %>
+
+</table>

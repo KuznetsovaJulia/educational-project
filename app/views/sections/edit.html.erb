@@ -2,11 +2,13 @@
 <%= simple_form_for(@section)  do |p| %>
   <%= p.error_notification %>
   <%= p.input :name %>
-  <%= p.button :submit, class:'update_lesson' %>
+  <%= p.button :submit, class:'update_section' %>
 <% end %>
 <h2>Добавить урок</h2>
 <%= simple_form_for(@lesson)  do |p| %>
   <%= p.input :name%>
   <%= p.button :submit, class:'create_lesson',id: @section.id %>
 <% end %>
+<div id="lessons">
 <%= render partial:  "lessons/lessons" %>
+</div>
