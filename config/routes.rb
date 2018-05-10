@@ -43,4 +43,7 @@ Rails.application.routes.draw do
   post '/delete_block/:id' => 'blocks#destroy'
   post '/create_practice' => 'practices#create', format: 'application/json'
   post '/delete_practice/:id' => 'practices#destroy'
+  resources :lessons do
+      resources :blocks, module: :lessons, only: [:destroy]
+  end
 end

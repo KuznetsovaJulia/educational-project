@@ -1,15 +1,17 @@
 $(function() {
     $(`.delete_block`).click(function (event) {
         event.preventDefault();
-        let block_id = $(this).attr('id');
+        let block_id = this.previousElementSibling.value
+        const lessonId = location.href.split(/\D+/)[2]
         if (confirm("Точно удалить?")){
             let current_block_tr = $(`tr#${block_id}`);
+            console.info(current_block_tr)
             $.ajax({
-                url:'/delete_block/'+block_id,
-                type: 'POST',
-                data:{method:'DELETE'},
+                url: `/lessons/${lessonId}/blocks/${block_id}`,
+                type: 'DELETE',
                 success: function(){
-                    $(current_block_tr).fadeOut(200);
+                    alert('success')
+                    $(current_block_tr).hide();
                 }
             });
         };

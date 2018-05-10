@@ -3,7 +3,7 @@
 # Table name: blocks
 #
 #  id         :bigint(8)        not null, primary key
-#  name       :string
+#  name       :string           default(""), not null
 #  theory     :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
