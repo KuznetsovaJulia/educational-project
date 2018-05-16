@@ -13,7 +13,7 @@
       <td align="center"><%= block.practices.size  %></td>
       <td><%= link_to "Добавить задачи",edit_block_path(block) %></td>
       <td>
-        <%= form_with url: lesson_block_path(@lesson.id), method: :delete do |f| %>
+        <%= form_with url: lesson_block_path(lesson_id:@lesson.id,id:block.id), method: :delete do |f| %>
           <%= f.hidden_field :block_id, value: block.id  %>
           <%= f.submit 'Удалить блок', class: 'delete_block', id: "block_#{block.id}" %>
         <% end %>

@@ -39,11 +39,10 @@ Rails.application.routes.draw do
   post '/create_section' => 'sections#create'
   post '/create_lesson' => 'lessons#create', format: 'application/json'
   post '/delete_lesson/:id' => 'lessons#destroy'
-  post '/create_block' => 'blocks#create', format: 'application/json'
-  post '/delete_block/:id' => 'blocks#destroy'
-  post '/create_practice' => 'practices#create', format: 'application/json'
-  post '/delete_practice/:id' => 'practices#destroy'
+
   resources :lessons do
-      resources :blocks, module: :lessons, only: [:destroy]
+      resources :blocks, module: :lessons, only: [:destroy,:create]
   end
+  resources :practices, module: :lessons, only: [:destroy,:create,:update]
+  resources :answers, only: [:destroy,:create,:new]
 end

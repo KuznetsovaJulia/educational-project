@@ -12,6 +12,8 @@ class BlocksController < ApplicationController
         @block = Block.find(params[:id])
         @answer_types = Practice.answer_types
         @practice = Practice.new
+        @practices = @block.practices
+        @answer=Answer.new
     end
 
     def destroy

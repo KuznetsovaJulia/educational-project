@@ -1,0 +1,26 @@
+<h2>Задание</h2>
+<div  id="<%= practice.id %>">
+  <%= simple_form_for(practice)  do |p| %>
+    <%= p.error_notification %>
+    <%= p.input :question , label:"Вопрос" %>
+    <%= p.button :submit, class:'update_practice' ,id: practice.id ,label:'Изменить'%>
+  <% end %>
+      <h3>Добавить варианты ответа</h3>
+      <%= simple_form_for ( @answer)  do |p| %>
+        <%= p.input :content %>
+        <%= p.label 'Если верный,отметь' %>
+        <%= p.check_box :correct %>
+        <%= p.button :submit, class:'create_answer' ,id:practice.id%>
+      <% end %>
+
+  <button class="delete_practice" id="<%= practice.id %>"  >Удалить задание</button>
+</div>
+
+
+<br>Варианты ответов:
+<div class="answers">
+
+  <%= render :partial => "practices/answer",
+             :collection => practice.answers,
+             :as => :answer %>
+</div>

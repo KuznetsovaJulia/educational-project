@@ -5,13 +5,13 @@
   <%= p.button :submit, class:'update_block' %>
 <% end %>
 <h2>Добавить задачи</h2>
-
 <%= simple_form_for(@practice)  do |p| %>
   <%= p.input :question %>
   <%= p.label :answer_type %>
   <%= p.select :answer_type, options_for_select(@answer_types.collect { |s| [s[0].humanize, s[0]] }, selected: @practice.answer_type), {}  %>
   <%= p.button :submit, class:'create_practice' %>
 <% end %>
-
+<br><br>
 <div id="practices">
+    <%= render :partial => "practices/practice", :collection => @practices, :as => :practice %>
 </div>

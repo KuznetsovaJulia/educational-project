@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510113813) do
+ActiveRecord::Schema.define(version: 20180515060114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+
+
+  create_table "answers", force: :cascade do |t|
+    t.string "content"
+    t.bigint "practice_id"
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["practice_id"], name: "index_answers_on_practice_id"
+  end
 
   create_table "blocks", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -39,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180510113813) do
     t.index ["course_id"], name: "index_categorizations_on_course_id"
   end
 
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -50,6 +62,7 @@ ActiveRecord::Schema.define(version: 20180510113813) do
     t.index ["deleted_at"], name: "index_courses_on_deleted_at"
   end
 
+
   create_table "lessons", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -58,6 +71,7 @@ ActiveRecord::Schema.define(version: 20180510113813) do
     t.datetime "updated_at", null: false
     t.index ["section_id"], name: "index_lessons_on_section_id"
   end
+
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
@@ -92,6 +106,8 @@ ActiveRecord::Schema.define(version: 20180510113813) do
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
+
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -115,10 +131,14 @@ ActiveRecord::Schema.define(version: 20180510113813) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "practices"
   add_foreign_key "blocks", "lessons"
   add_foreign_key "categorizations", "categories"
   add_foreign_key "categorizations", "courses"
+
   add_foreign_key "lessons", "sections"
+
   add_foreign_key "practices", "blocks"
   add_foreign_key "sections", "courses"
+
 end

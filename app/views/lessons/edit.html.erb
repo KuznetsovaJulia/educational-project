@@ -5,10 +5,8 @@
   <%= p.button :submit, class:'update_lesson' %>
 <% end %>
 <h2>Добавить блок</h2>
-<%= simple_form_for(@block)  do |p| %>
+<%= simple_form_for(@block,url: lesson_blocks_path(@lesson.id), method: :create)  do |p| %>
   <%= p.input :theory%>
-  <%= p.button :submit,"Добавить", class:'create_block',id: @lesson.id %>
+    <%= p.submit 'Создать блок', class: 'create_block' %>
 <% end %>
-<div id="blocks">
-  <%= render partial:  "blocks/blocks" %>
-</div>
+  <%= render partial:  "lessons/blocks/blocks" %>

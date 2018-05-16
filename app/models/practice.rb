@@ -28,4 +28,5 @@ class Practice < ApplicationRecord
           write_text: 'write_text',
           write_number: 'write_number'
   }
+has_many :answers, dependent: :destroy
 end
