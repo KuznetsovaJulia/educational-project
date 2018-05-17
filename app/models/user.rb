@@ -36,6 +36,7 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :courses, through: :subscriptions
   has_many :likes
+  has_many :studies, dependent: :destroy
 
   def likes?(course)
     course.likes.where(user_id: id).any?

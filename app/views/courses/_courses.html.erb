@@ -1,8 +1,26 @@
 <% courses.each do |course| %>
   <% if current_user == course.author %>
-    <li> <%= link_to course.name, course%> |
-      <%= link_to 'Удалить', course_path(course), method: :delete %></li>
+    <li>
+      <%= link_to course.name, course%>
+      <%= link_to 'Удалить', course_path(course), method: :delete %>
+    <% if Study.where(user_id:current_user.id,course_id:course.id).empty? %>
+        <%= link_to 'Начать обучение', "#"%>
+    <% else %>
+        <%= link_to 'Продолжить обучение', "#"%>
+    <% end %>
+    </li>
   <% else %>
-    <li>  <%= link_to course.name, course%></li>
+    <li>
+    <%= link_to course.name, course%>
+    </li>
+    <% if Study.where(user_id:current_user.id,course_id:course.id).empty? %>
+      <li>
+        <%= link_to 'Начать обучение', "#"%>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to 'Продолжить обучение', "#"%>
+      </li>
+    <% end %>
   <% end %>
 <% end %>

@@ -28,6 +28,7 @@ class Course < ApplicationRecord
   has_many :lessons, through: :sections
   has_many :blocks, through: :lessons
   has_many :practices, through: :blocks
+  has_many :studies, dependent: :destroy
 
   validates :description, presence: true, length: { minimum: 3 }
 
