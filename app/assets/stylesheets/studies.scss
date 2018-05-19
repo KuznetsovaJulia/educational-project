@@ -1,0 +1,53 @@
+
+.body{
+  font-family: 'Roboto', sans-serif;
+  background-color:#FDF5E6 ;
+
+
+}
+.head{
+  background-color: #DCDCDC;
+
+}
+.menu{
+  display: flex;
+  justify-content: space-around;
+}
+.section{
+  display: flex;
+  background-color: #E6E6FA;
+  flex-direction: column;
+  text-align: center;
+}
+.lesson{
+  display: flex;
+  background-color: #FFFAFA;
+  flex-direction: column;
+  text-align: center;
+}
+.block{
+  display: flex;
+  background-color: #FAEBD7;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+.block-element{
+  display: flex;
+  justify-content: space-around;
+}
+.theory{
+  width: 50%;
+  background-color: #FFFAF0;
+}
+.practice{
+  background-color: #FDF5E6;
+  width: 50%;
+}
+.practice-ex{
+
+  display: flex;
+  justify-content: space-around;
+  background-color: #FFEFD5;
+}

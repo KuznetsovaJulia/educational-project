@@ -1,12 +1,12 @@
 <h2>Редактировать урок</h2>
 <%= simple_form_for(@lesson)  do |p| %>
   <%= p.error_notification %>
-  <%= p.input :name %>
-  <%= p.button :submit, class:'update_lesson' %>
+  <%= p.input :name,label:"Название" %>
+  <%= p.button :submit, class:'update_lesson',value:"Редактировать" %>
 <% end %>
 <h2>Добавить блок</h2>
 <%= simple_form_for(@block,url: lesson_blocks_path(@lesson.id), method: :create)  do |p| %>
-  <%= p.input :theory%>
-    <%= p.submit 'Создать блок', class: 'create_block' %>
+  <%= p.input :theory,label:"Теория"%>
+    <%= p.submit 'Создать блок', class: 'create_block',value:"Создать" %>
 <% end %>
   <%= render partial:  "lessons/blocks/blocks" %>

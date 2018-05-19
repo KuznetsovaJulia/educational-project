@@ -1,2 +1,11 @@
- <h2>Создать курс</h2>
- <%= render "form" %>
+<body class="body">
+<h2>Создать курс</h2>
+<%= render "form" %>
+
+<div class="courses">
+  <%=  render partial: 'course', :collection => @courses %>
+
+</div>
+
+
+</body>

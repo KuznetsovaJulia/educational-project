@@ -2,12 +2,7 @@ Rails.application.routes.draw do
   resources :categories do
     resources :courses, only: [:index], module: :categories
   end
-  resources :courses do
-    resources :sections, only: [:index], module: :courses
-  end
-  resources :courses do
-    resource :like, module: :courses, only: [:show]
-  end
+
   resources :categories
   resources :sections
   resources :lessons
@@ -33,8 +28,7 @@ Rails.application.routes.draw do
                registration: 'register', only: %i[new create edit update]
              }
   get '/users/:id/profile' => 'users#show', as: :user_profile
-  get '/courses/:id/like_count' => 'courses#like_count', as: :like_count
-  post '/create_course' => 'courses#create'
+
   post '/delete_section/:id' => 'sections#destroy'
   post '/create_section' => 'sections#create'
   post '/create_lesson' => 'lessons#create', format: 'application/json'
@@ -45,4 +39,13 @@ Rails.application.routes.draw do
   end
   resources :practices, module: :lessons, only: [:destroy,:create,:update]
   resources :answers, only: [:destroy,:create,:new]
+
+
+  resources :courses do
+    resources :sections, only: [:index], module: :courses
+    resource :like, module: :courses, only: [:show]
+    resources :studies, controller: 'studies/courses',only:[:show]
+    resources :studies, controller: 'studies',only:[:new]
+  end
+
 end

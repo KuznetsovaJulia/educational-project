@@ -1,0 +1,12 @@
+<body class="body">
+<div class="head">
+  <div class="menu">
+    <p><%= link_to 'Главная', "/" %></p>
+    <h3><%= @course.name %> </h3>
+  </div>
+</div>
+<%= render partial:  "section", :collection => @course.sections, :as => :section %>
+
+
+</body>
+</div>

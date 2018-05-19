@@ -1,5 +1,2 @@
 <h1><%= @course.name %></h1>
 <%= link_to @author.email, user_profile_path(current_user) %>
-<div id="likes">
-  <%=render partial: "likes"%>
-</div>

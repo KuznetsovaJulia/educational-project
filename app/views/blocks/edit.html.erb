@@ -1,17 +1,19 @@
+<body class="body">
 <h2>Редактировать урок</h2>
 <%= simple_form_for(@block)  do |p| %>
   <%= p.error_notification %>
-  <%= p.input :theory %>
-  <%= p.button :submit, class:'update_block' %>
+  <%= p.input :theory,label:"Теория" %>
+  <%= p.button :submit, class:'update_block' ,value:"Редактировать"%>
 <% end %>
-<h2>Добавить задачи</h2>
+<h2>Добавить задачу</h2>
 <%= simple_form_for(@practice)  do |p| %>
-  <%= p.input :question %>
-  <%= p.label :answer_type %>
+  <%= p.input :question,label:"Вопрос" %>
+  <%= p.label :answer_type,label:"Тип задачи" %>
   <%= p.select :answer_type, options_for_select(@answer_types.collect { |s| [s[0].humanize, s[0]] }, selected: @practice.answer_type), {}  %>
-  <%= p.button :submit, class:'create_practice' %>
+  <%= p.button :submit, class:'create_practice' ,value:"Добавить"%>
 <% end %>
-<br><br>
 <div id="practices">
-    <%= render :partial => "practices/practice", :collection => @practices, :as => :practice %>
+  <%= render :partial => "practices/practice", :collection => @practices, :as => :practice %>
 </div>
+</body>
+

@@ -23,4 +23,8 @@
 class Study < ApplicationRecord
   belongs_to :user
   belongs_to :course
+  has_many :sections, through: :course
+  has_many :lessons, through: :course
+  has_many :blocks, through: :course
+  has_many :practices, through: :course
 end

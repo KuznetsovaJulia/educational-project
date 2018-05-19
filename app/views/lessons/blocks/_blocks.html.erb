@@ -1,15 +1,14 @@
-<table id="blocks">
+<body class="body">
+<table class="block" id="blocks">
   <tr>
-    <th>ID</th>
-    <th>Теория</th>
+    <th></th>
     <th>Количество задач</th>
     <th></th>
     <th></th>
   </tr>
   <% @blocks.each do |block|  %>
     <tr id="<%= block.id %>">
-      <td><%= block.id %></td>
-      <td><%= block.theory %></td>
+      <td>Блок <%= block.id %></td>
       <td align="center"><%= block.practices.size  %></td>
       <td><%= link_to "Добавить задачи",edit_block_path(block) %></td>
       <td>
@@ -17,8 +16,9 @@
           <%= f.hidden_field :block_id, value: block.id  %>
           <%= f.submit 'Удалить блок', class: 'delete_block', id: "block_#{block.id}" %>
         <% end %>
-        </td>
+      </td>
     </tr>
   <% end %>
 
 </table>
+</body>

@@ -1,14 +1,16 @@
+<body class="body">
 <h2>Редактировать курс</h2>
 <%= simple_form_for(@course)  do |p| %>
   <%= p.error_notification %>
-  <%= p.input :name %>
-  <%= p.input :description %>
-  <%= p.association  :categories ,as: :check_boxes%>
-  <%= p.button :submit, class:'update_course' %>
+  <%= p.input :name,label:"Название" %>
+  <%= p.input :description,label:"Описание" %>
+  <%= p.association  :categories ,as: :check_boxes,label:""%>
+  <%= p.button :submit, class:'update_course', value:"Редактировать" %>
 <% end %>
 <h2>Добавить раздел</h2>
 <%= simple_form_for(@section)  do |p| %>
-  <%= p.input :name%>
-  <%= p.button :submit, class:'create_section',id: @course.id %>
+  <%= p.input :name,label:"Название"%>
+  <%= p.button :submit, class:'create_section',id: @course.id , value:"Создать раздел"%>
 <% end %>
 <%= render partial:  "sections/sections" %>
+</body>

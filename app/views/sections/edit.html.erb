@@ -1,3 +1,5 @@
+<body class="body">
+
 <h2>Редактировать раздел</h2>
 <%= simple_form_for(@section)  do |p| %>
   <%= p.error_notification %>
@@ -10,5 +12,7 @@
   <%= p.button :submit, class:'create_lesson',id: @section.id %>
 <% end %>
 <div id="lessons">
-<%= render partial:  "lessons/lessons" %>
+  <%= render partial:  "lessons/lessons" %>
 </div>
+</body>
+

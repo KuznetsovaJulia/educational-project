@@ -26,7 +26,7 @@ $(function() {
             type: 'POST',
             contentType: 'application/json',
             success: function(result) {
-                $(`div#lessons`).html(result)
+            $(`div#lessons`).html(result)
             }
         });
 

@@ -1,0 +1,22 @@
+<div class="block">
+  <h2>Блок:<%= block.name %></h2>
+  <div class="block-element">
+
+    <div class="theory">
+      <p>ТЕОРИЯ</p>
+      <div>
+        <p> <%= block.theory %></p>
+      </div>
+    </div>
+    <div class="practice">
+      <p>ПРАКТИКА</p>
+      <div class="practice-ex">
+        <%= render partial:  "practice", :collection => block.practices, :as => :practice %>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

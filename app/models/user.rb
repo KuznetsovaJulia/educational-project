@@ -11,6 +11,8 @@
 #  current_sign_in_ip     :inet
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :inet
 #  remember_created_at    :datetime

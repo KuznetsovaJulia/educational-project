@@ -1,15 +1,25 @@
-<h2>Sign up</h2>
+<body class="body">
+<div class="logIn">
+<h2>Регистрация</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
+    <div class="field">
+      <%= f.label "Имя" %><br />
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label "Фамилия" %><br />
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label "Почта" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label "Пароль" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -17,13 +27,17 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label "Повторите пароль" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="actions">
-    <%= invisible_recaptcha_tags text: 'Sign up' %>
+    <%= invisible_recaptcha_tags text: 'Зарегистрироваться' %>
   </div>
 <% end %>
+<div>
+  <%= render "devise/shared/links" %>
 
-<%= render "devise/shared/links" %>
+</div>
+</div>
+</body>

@@ -23,7 +23,6 @@ class Course < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: 'author_id', optional: true
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations, dependent: :destroy
-  has_many :likes
   has_many :sections, dependent: :destroy
   has_many :lessons, through: :sections
   has_many :blocks, through: :lessons

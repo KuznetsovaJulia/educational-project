@@ -1,6 +1,9 @@
 class CoursesController < ApplicationController
+  respond_to :js
+
   def new
     @course = Course.new
+    @courses=current_user.courses
   end
 
   def index
@@ -29,7 +32,7 @@ class CoursesController < ApplicationController
     @course = current_user.create_course(params[:name], params[:description])
     if @course.save
       create_categorizations
-      redirect_to edit_course_path(@course)
+      @courses = current_user.courses
     end
   end
 
@@ -42,11 +45,6 @@ class CoursesController < ApplicationController
       @course.destroy
       redirect_to(root_path, notice: "Курс ''#{Course.with_deleted.find(@id).name}'' был успешно удален.")
     end
-  end
-
-  def like_count
-    @course = Course.find(params[:id])
-    render json: @course.likes.count
   end
 
   private

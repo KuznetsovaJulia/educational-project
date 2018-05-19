@@ -1,6 +1,10 @@
-<% @subscriptions.map do |subscription| %>
+<% if current_user.subscriptions==[]  %>
+<% else %>
+  <h2>Подписки</h2>
+  <% @subscriptions.each do |subscription| %>
   <li>
     <%= link_to subscription.course.name, subscription.course%>
   </li>
-
+  <% end %>
 <% end %>
+
